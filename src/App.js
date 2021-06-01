@@ -3,23 +3,24 @@ import {useAuth0} from '@auth0/auth0-react'
 
 function App() {
 
-  const 
+  const {loginWithPopup, loginWithRedirect, logout, user, isAuthenticated} = useAuth0()
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <hi>Driver blah blah blah </hi>
+      <ul>
+        <li> 
+          <button onClick={loginWithPopup}> login with popup</button>
+        </li>
+        <li>
+          <button onClick={loginWithRedirect}> login with redirect</button>
+        </li>
+        <li>
+          <button onClick={logout}>
+            logout 
+          </button>
+        </li>
+      </ul>
     </div>
   );
 }
