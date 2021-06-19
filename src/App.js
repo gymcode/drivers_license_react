@@ -1,9 +1,12 @@
-import './App.css';
+import React from 'react'
+
+// importing components 
+import FormSection from "./components/form"
 
 function App() {
   return (
-    <div className="bg-red-400">
-      kdfsfdfsldflksdfskfsdf
+    <div className="flex justify-center">
+      <FormSection/>
     </div>
   );
 }
