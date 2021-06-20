@@ -17,7 +17,7 @@ const FormSection = ()=>{
                         type="text"
                         name="email"
                         id="email"
-                        onChange = {e => console.log(e.target.value)}
+                        onChange = {e => setLicenseNumber(e.target.value)}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                         placeholder="you@example.com"
                     />
@@ -32,6 +32,7 @@ const FormSection = ()=>{
                         type="text"
                         name="email"
                         id="email"
+                        onChange = {e => setName(e.target.value)}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                         placeholder="you@example.com"
                     />
@@ -46,6 +47,7 @@ const FormSection = ()=>{
                         type="text"
                         name="email"
                         id="email"
+                        onChange = {e => setDob(e.target.value)}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                         placeholder="you@example.com"
                     />
