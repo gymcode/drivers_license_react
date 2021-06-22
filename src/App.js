@@ -9,6 +9,7 @@ const accesssToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJlZWRhNDA2Z
 axios.interceptors.request.use(
   config => {
     config.headers.authorization = `Bearer ${accesssToken}`
+    return config
   }, 
   error => {
     return Promise.reject(error)
@@ -55,7 +56,8 @@ function App() {
         full_name: name, 
         date_of_birth: dob
       }
-    )
+    ) 
+    .then(response => console.log(response))
   } 
         
   return (
