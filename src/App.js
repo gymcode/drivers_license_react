@@ -4,51 +4,30 @@ import FormSection from "./components/form"
 import axios from 'axios'
 
 
-const accesssToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJlZWRhNDA2Zi0zN2ZlLTRkYmUtODY2ZS02YTM0ZjEwM2RlMTkiLCJhdWQiOiI1ODdmZDZhOC00MTA3LTQ4ZTktOTQyYi1lZGE4MGI0NjNkZTkiLCJzdWIiOiI0Y2M0ZDIwOC0wYjEzLTQ0NTEtYjkzNy04ZTI2NDA5OGU0ZWMiLCJuYmYiOjAsInNjb3BlcyI6WyJ2ZXJpZmljYXRpb25fdmlldyIsInZlcmlmaWNhdGlvbl9saXN0IiwidmVyaWZpY2F0aW9uX2RvY3VtZW50IiwidmVyaWZpY2F0aW9uX2lkZW50aXR5Il0sImV4cCI6MzIwMTYyMjk5OCwiaWF0IjoxNjIzNzg2MTk4fQ.q7vJs44yS12Gw1qvKL_hqkTwG3neUdh7gXYZPlkAuDA'
 
-axios.interceptors.request.use(
-  config => {
-    config.headers.authorization = `Bearer ${accesssToken}`
-    return config
-  }, 
-  error => {
-    return Promise.reject(error)
-  }
-)
 
 function App() {
   const [LicenseNumber, setLicenseNumber] = React.useState("")
   const [name, setName] = React.useState("")
   const [dob, setDob] = React.useState("")
+  const [data, setData] = React.useState()
 
-  // function handleClick (e) {
-  //   e.preventDefault()
-
-  //   const Token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJlZWRhNDA2Zi0zN2ZlLTRkYmUtODY2ZS02YTM0ZjEwM2RlMTkiLCJhdWQiOiI1ODdmZDZhOC00MTA3LTQ4ZTktOTQyYi1lZGE4MGI0NjNkZTkiLCJzdWIiOiI0Y2M0ZDIwOC0wYjEzLTQ0NTEtYjkzNy04ZTI2NDA5OGU0ZWMiLCJuYmYiOjAsInNjb3BlcyI6WyJ2ZXJpZmljYXRpb25fdmlldyIsInZlcmlmaWNhdGlvbl9saXN0IiwidmVyaWZpY2F0aW9uX2RvY3VtZW50IiwidmVyaWZpY2F0aW9uX2lkZW50aXR5Il0sImV4cCI6MzIwMTYyMjk5OCwiaWF0IjoxNjIzNzg2MTk4fQ.q7vJs44yS12Gw1qvKL_hqkTwG3neUdh7gXYZPlkAuDA'
-
-  //   const reqOptions = {
-  //     method: "POST", 
-  //     headers: {
-  //       'Content-type': 'application/json', 
-  //       'Authorization': Token
-  //     }, 
-  //     body: JSON.stringify({
-  //       id: LicenseNumber, 
-  //       full_name: name, 
-  //       date_of_birth: dob
-  //     })
-  //   }
-
-  //   fetch('https://api.appruve.co/v1/verifications/gh/driver_license', reqOptions)
-  //   .then(response => response.json )
-  //   .then(data => console.log(data))
-
-  //   console.log("eee")
-  // }
+  console.log(data)
 
   function handleClick(e){
     e.preventDefault()
 
+    const accesssToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3MmE4ZDM5My00NzY3LTRmZGUtOTQxNi0zMjMxYzc5YmE4YjEiLCJhdWQiOiI1ODdmZDZhOC00MTA3LTQ4ZTktOTQyYi1lZGE4MGI0NjNkZTkiLCJzdWIiOiI0Y2M0ZDIwOC0wYjEzLTQ0NTEtYjkzNy04ZTI2NDA5OGU0ZWMiLCJuYmYiOjAsInNjb3BlcyI6WyJ2ZXJpZmljYXRpb25fdmlldyIsInZlcmlmaWNhdGlvbl9saXN0IiwidmVyaWZpY2F0aW9uX2RvY3VtZW50IiwidmVyaWZpY2F0aW9uX2lkZW50aXR5Il0sImV4cCI6MTYzOTkzMzY2OCwiaWF0IjoxNjI0MzgxNjY4fQ.WDhlexO1E_Sw9mHA7P5yZlxr6c4Av1JkiK4noVooRak'
+
+    axios.interceptors.request.use(
+      config => {
+        config.headers.authorization = `Bearer ${accesssToken}`
+        return config
+      }, 
+      error => {
+        return Promise.reject(error)
+      }
+    )
 
     axios.post('https://api.appruve.co/v1/verifications/gh/driver_license', 
       {
@@ -57,7 +36,7 @@ function App() {
         date_of_birth: dob
       }
     ) 
-    .then(response => console.log(response))
+    .then( ({data}) => setData(data))
   } 
         
   return (
