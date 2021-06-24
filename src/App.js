@@ -6,6 +6,7 @@ import axios from 'axios'
 function App() {
   const [LicenseNumber, setLicenseNumber] = React.useState("")
   const [data, setData] = React.useState()
+  const [isLoading, setIsLoading] = React.useState(false)
 
   console.log(data)
 
@@ -29,7 +30,13 @@ function App() {
         id: LicenseNumber,        
       }
     ) 
-    .then( ({data}) => setData(data))
+    .then( ({data}) => {
+      if (!data) {
+          
+      }
+      !isLoading
+      setData(data)
+    })
   } 
         
   return (
@@ -40,30 +47,30 @@ function App() {
           <div style={{background: "red"}} className={""}> 
 
           </div>
-          <div className={""}>
+          <div className={"flex justify-center items-center"}>
             <form onSubmit={handleClick}>
               <div>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="number" className="block text-2xl font-medium my-5 text-gray-700">
                         License Number 
                         </label>
                         <div className="mt-1">
                             <input
                                 type="text"
-                                name="email"
-                                id="email"
+                                name="number"
+                                id="number"
                                 onChange = {e => setLicenseNumber(e.target.value)}
-                                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                placeholder="you@example.com"
+                                placeholder="G000000000001"
+                                className={"h-10 px-3 ring-2 block w-full sm:text-sm border-gray-300 rounded-md"}
                             />
                         </div>
                     </div>
                     <div>
-                        <div className="mt-1 bg-red-300">
-                          <button type="submit" value="hello">
-                            hello
-                          </button>
+                      <button type="submit" className="mt-8 bg-red-300 w-full h-10 shadow-lg " value="hello">
+                        <div>
+                            Check Validity
                         </div>
+                      </button>
                     </div>
                 </div>
             </form>
@@ -71,7 +78,12 @@ function App() {
         </div>
         :
         <>
-          <div>dadadadasd</div>
+          <div>
+            <div>{data.id}</div>
+            <div>{data}</div>
+            <div>{data}</div>
+            <div>{data}</div>
+          </div>
         </>
       }
     </div>
