@@ -30,13 +30,7 @@ function App() {
         id: LicenseNumber,        
       }
     ) 
-    .then( ({data}) => {
-      if (!data) {
-          
-      }
-      !isLoading
-      setData(data)
-    })
+    .then( ({data}) => setData(data))
   } 
         
   return (
@@ -80,9 +74,10 @@ function App() {
         <>
           <div>
             <div>{data.id}</div>
-            <div>{data}</div>
-            <div>{data}</div>
-            <div>{data}</div>
+            <div>{data.date_of_birth}</div>
+            <div>{data.issue_date}</div>
+            <div>{data.full_name}</div>
+            <div>{data.expiry_date}</div>
           </div>
         </>
       }
