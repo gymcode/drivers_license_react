@@ -1,4 +1,5 @@
 import React from 'react'
+
 // importing components 
 import FormSection from "./components/form"
 import axios from 'axios'
@@ -35,52 +36,50 @@ function App() {
         
   return (
     <div className={""}>
-      {
-        !data ? 
         <div className={"grid grid-cols-2 gap-2 h-screen"}>
           <div style={{background: "red"}} className={""}> 
 
           </div>
           <div className={"flex justify-center items-center"}>
-            <form onSubmit={handleClick}>
-              <div>
-                    <div>
-                        <label htmlFor="number" className="block text-2xl font-medium my-5 text-gray-700">
-                        License Number 
-                        </label>
-                        <div className="mt-1">
-                            <input
-                                type="text"
-                                name="number"
-                                id="number"
-                                onChange = {e => setLicenseNumber(e.target.value)}
-                                placeholder="G000000000001"
-                                className={"h-10 px-3 ring-2 block w-full sm:text-sm border-gray-300 rounded-md"}
-                            />
-                        </div>
-                    </div>
-                    <div>
-                      <button type="submit" className="mt-8 bg-red-300 w-full h-10 shadow-lg " value="hello">
-                        <div>
-                            Check Validity
-                        </div>
-                      </button>
-                    </div>
-                </div>
-            </form>
-          </div>
-        </div>
-        :
-        <>
-          <div>
+           {
+             !data ? 
+             <form onSubmit={handleClick}>
+             <div>
+                   <div>
+                       <label htmlFor="number" className="block text-2xl font-medium my-5 text-gray-700">
+                       License Number 
+                       </label>
+                       <div className="mt-1">
+                           <input
+                               type="text"
+                               name="number"
+                               id="number"
+                               onChange = {e => setLicenseNumber(e.target.value)}
+                               placeholder="G00000000001"
+                               className={"h-10 px-3 ring-2 block w-full sm:text-sm border-gray-300 rounded-md"}
+                           />
+                       </div>
+                   </div>
+                   <div>
+                     <button type="submit" className="mt-8 bg-red-300 w-full h-10 shadow-lg " value="hello">
+                       <div>
+                           Check Validity
+                       </div>
+                     </button>
+                   </div>
+               </div>
+           </form>
+           : 
+           <div>
             <div>{data.id}</div>
             <div>{data.date_of_birth}</div>
             <div>{data.issue_date}</div>
             <div>{data.full_name}</div>
             <div>{data.expiry_date}</div>
           </div>
-        </>
-      }
+           }
+          </div>
+        </div>
     </div>
   );
 }
