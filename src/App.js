@@ -5,12 +5,17 @@ import Web3 from 'web3'
 import FormSection from "./components/form"
 import axios from 'axios'
 
+// declaring web3 variables 
+const web3js = new Web3()
+var rawData = 'Verified Ok'
+var hexCode = web3js.utils.asciiToHex(rawData)
+
 function App() {
   const [LicenseNumber, setLicenseNumber] = React.useState("")
   const [data, setData] = React.useState()
   const [isLoading, setIsLoading] = React.useState(false)
-
-  console.log(data)
+  const [target, setTarget] = React.useState(""); 
+  const [issuer, setIssuer] = React.useState("")
 
   function handleClick(e){
     e.preventDefault()
@@ -36,7 +41,16 @@ function App() {
   } 
 
   function doneDeal(){
-    console.log(window.location)
+
+    const url = window.location.href
+    const getIssuer = url.split('issuer=')[1]
+    const getTarget = url.slice(30, 72)
+
+    setTarget(getTarget)
+    setIssuer(getIssuer) 
+
+    // adding the 
+
   }
         
   return (
