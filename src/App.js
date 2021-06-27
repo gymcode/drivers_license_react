@@ -9,6 +9,7 @@ import axios from 'axios'
 const web3js = new Web3()
 var rawData = 'Verified Ok'
 var hexCode = web3js.utils.asciiToHex(rawData)
+var claimType = 12
 
 function App() {
   const [LicenseNumber, setLicenseNumber] = React.useState("")
@@ -40,7 +41,7 @@ function App() {
     .then( ({data}) => setData(data))
   } 
 
-  function doneDeal(){
+  async function doneDeal(){
 
     const url = window.location.href
     const getIssuer = url.split('issuer=')[1]
@@ -49,7 +50,10 @@ function App() {
     setTarget(getTarget)
     setIssuer(getIssuer) 
 
-    // adding the 
+    // adding the hashing function 
+    var hashed = web3js.utils.soliditySha3(target, claimType, hexCode)
+    var signedData = await web3js.eth.accounts.sign(hashed, )
+    // console.log(hashed)
 
   }
         
