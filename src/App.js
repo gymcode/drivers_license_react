@@ -5,11 +5,13 @@ import Web3 from 'web3'
 import FormSection from "./components/form"
 import axios from 'axios'
 
+// importing claimsignerkey 
+import {driverApp, accessToken} from './utils/config.json'
+
 // declaring web3 variables 
 const web3js = new Web3()
 var rawData = 'Verified Ok'
 var hexCode = web3js.utils.asciiToHex(rawData)
-var claimType = 12
 
 function App() {
   const [LicenseNumber, setLicenseNumber] = React.useState("")
@@ -21,11 +23,9 @@ function App() {
   function handleClick(e){
     e.preventDefault()
 
-    const accesssToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3MmE4ZDM5My00NzY3LTRmZGUtOTQxNi0zMjMxYzc5YmE4YjEiLCJhdWQiOiI1ODdmZDZhOC00MTA3LTQ4ZTktOTQyYi1lZGE4MGI0NjNkZTkiLCJzdWIiOiI0Y2M0ZDIwOC0wYjEzLTQ0NTEtYjkzNy04ZTI2NDA5OGU0ZWMiLCJuYmYiOjAsInNjb3BlcyI6WyJ2ZXJpZmljYXRpb25fdmlldyIsInZlcmlmaWNhdGlvbl9saXN0IiwidmVyaWZpY2F0aW9uX2RvY3VtZW50IiwidmVyaWZpY2F0aW9uX2lkZW50aXR5Il0sImV4cCI6MTYzOTkzMzY2OCwiaWF0IjoxNjI0MzgxNjY4fQ.WDhlexO1E_Sw9mHA7P5yZlxr6c4Av1JkiK4noVooRak'
-
     axios.interceptors.request.use(
       config => {
-        config.headers.authorization = `Bearer ${accesssToken}`
+        config.headers.authorization = `Bearer ${accessToken.Token}`
         return config
       }, 
       error => {
@@ -51,9 +51,10 @@ function App() {
     setIssuer(getIssuer) 
 
     // adding the hashing function 
-    var hashed = web3js.utils.soliditySha3(target, claimType, hexCode)
-    var signedData = await web3js.eth.accounts.sign(hashed, )
-    // console.log(hashed)
+    var hashed = web3js.utils.soliditySha3(target, driverApp.claimType, hexCode)
+    var signedData = await web3js.eth.accounts.sign(hashed, driverApp.claimSignerKey)
+    console.log(signedData.messageHash)
+    console.log(signedData.signature)
 
   }
         
