@@ -3,11 +3,22 @@ import { ActivatedContext } from '../App';
 
 function ActivateComponent (){
     const {hash, signature, target, issuer} = React.useContext(ActivatedContext)
+
+    function Done() {
+
+    }
+
     return (
-        <React.Fragment>
-            {hash}
-            
-        </React.Fragment>
+        <div className={"flex justify-center items-center"}>
+            <div>
+                <div>Issuer: {issuer}</div>
+                <div>sdsdssd</div>
+                <div>sdsdssd</div>
+                <div>sdsdssd</div>
+                <div>sdsdssd</div>
+                <div>sdsdssd</div>
+            </div>
+        </div>  
     )
 }
 
