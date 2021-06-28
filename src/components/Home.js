@@ -1,6 +1,8 @@
 
 import React from 'react'
+import {Link, useHistory} from 'react-router-dom'
 import Web3 from 'web3'
+import {ActivatedContext} from '../App'
 
 // importing components 
 import axios from 'axios'
@@ -17,8 +19,9 @@ function HomeComponent() {
   const [LicenseNumber, setLicenseNumber] = React.useState("")
   const [data, setData] = React.useState()
   const [isLoading, setIsLoading] = React.useState(false)
-  const [target, setTarget] = React.useState(""); 
-  const [issuer, setIssuer] = React.useState("")
+  const {target, setTarget, setIssuer, setSignature, setHash} = React.useContext(ActivatedContext)
+
+  let History = useHistory()
 
   function handleClick(e){
     e.preventDefault()
@@ -53,8 +56,12 @@ function HomeComponent() {
     // adding the hashing function 
     var hashed = web3js.utils.soliditySha3(target, driverApp.claimType, hexCode)
     var signedData = await web3js.eth.accounts.sign(hashed, driverApp.claimSignerKey)
+    setSignature(signedData.signature)
+    setHash(signedData.messageHash)
     console.log(signedData.messageHash)
     console.log(signedData.signature)
+
+    History.push(`/activated?hashed=${hashed}signedData=${signedData.signature}`)
 
   }
         
