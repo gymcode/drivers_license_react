@@ -13,10 +13,12 @@ function App(){
     const [hash, setHash] = React.useState("")
     const [signature, setSignature] = React.useState("")
 
+    var rawData = 'Verified Ok'
+
     return (
       <React.Fragment>
         <Router>
-          <ActivatedContext.Provider value={{target, setTarget, issuer, setIssuer, hash, setHash, signature, setSignature}}>
+          <ActivatedContext.Provider value={{target, setTarget, issuer, setIssuer, hash, setHash, signature, setSignature, rawData}}>
             <Route path={"/"} exact component={HomeComponent}/>
             <Route path={"/activated"} component={ActivateComponent}/>
           </ActivatedContext.Provider>
