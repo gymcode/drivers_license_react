@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/alt-text */
 
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import Web3 from 'web3'
 import {ActivatedContext} from '../App'
+import './ss.css'
 
+import image from '../asset/image.jpg'
 // importing components 
 import axios from 'axios'
 
@@ -66,10 +69,10 @@ function HomeComponent() {
   }
         
   return (
-    <div className={""}>
+    <div className={"amen"}>
         <div className={"grid grid-cols-2 gap-2 h-screen"}>
-          <div style={{background: "red"}} className={""}> 
-
+          <div className={""}> 
+            <img src={image} className={"bg-cover"} style={{height: "100vh", width: "100vh"}}/>
           </div>
           <div className={"flex justify-center items-center"}>
            {
