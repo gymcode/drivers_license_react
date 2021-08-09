@@ -4,7 +4,7 @@ import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import Web3 from 'web3'
 import {ActivatedContext} from '../App'
-import './ss.css'
+import sorry from './ss.css'
 
 import image from '../asset/image.jpg'
 // importing components 
