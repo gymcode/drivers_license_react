@@ -65,14 +65,15 @@ function HomeComponent() {
     console.log(signedData.signature)
 
     History.push(`/activated?hashed=${hashed}signedData=${signedData.signature}`)
-
   }
         
   return (
-    <div className={"amen"}>
-        <div className={"grid grid-cols-2 gap-2 h-screen"}>
-          <div className={""}> 
-            <img src={image} className={"bg-cover"} style={{height: "100vh", width: "100vh"}}/>
+    <div className={""}>
+        <div className={"grid grid-cols-3  h-screen"}>
+          <div className={"col-span-2"}> 
+            <div className={"hello"}>
+
+            </div>
           </div>
           <div className={"flex justify-center items-center"}>
            {

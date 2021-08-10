@@ -1,4 +1,9 @@
 
-amen{
-    background-color: rgb(209, 138, 45);
+.hello{
+    clip-path: circle(94.4% at 16% 48%);
+    background-image: url('../asset/pexels-cottonbro-4606336.jpg');
+    background-size: cover;    
+    height: 100%;
+    width: 100%;
+
 }
