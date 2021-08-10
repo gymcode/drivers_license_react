@@ -80,6 +80,7 @@ function HomeComponent() {
              !data ? 
              <form onSubmit={handleClick}>
              <div>
+                  <div>Heksk</div>
                   <div>
                       <label htmlFor="number" className="block text-2xl font-medium my-5 text-gray-700">
                       License Number 
@@ -96,7 +97,7 @@ function HomeComponent() {
                       </div>
                    </div>
                    <div>
-                     <button type="submit" className="mt-8 bg-red-300 w-full h-10 shadow-lg " value="hello">
+                     <button type="submit" className="mt-8 bg-green-500 w-full h-10 shadow-lg " value="hello">
                        <div>
                            Check Validity
                        </div>
