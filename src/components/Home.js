@@ -22,6 +22,7 @@ function HomeComponent() {
   const [LicenseNumber, setLicenseNumber] = React.useState("")
   const [data, setData] = React.useState()
   const [isLoading, setIsLoading] = React.useState(false)
+  
   const {target, setTarget, setIssuer, setSignature, setHash} = React.useContext(ActivatedContext)
 
   let History = useHistory()
@@ -38,13 +39,15 @@ function HomeComponent() {
         return Promise.reject(error)
       }
     )
-
+    setIsLoading(!isLoading)
     axios.post('https://api.appruve.co/v1/verifications/gh/driver_license', 
       {
         id: LicenseNumber,        
       }
     ) 
-    .then( ({data}) => setData(data))
+    .then( ({data}) => 
+      setData(data))
+      
   } 
 
   async function doneDeal(){
@@ -69,20 +72,19 @@ function HomeComponent() {
         
   return (
     <div className={""}>
-        <div className={"grid grid-cols-3  h-screen"}>
+        <div className={"grid grid-cols-3 bg-gray-100 h-screen"} style={{backgroundImage: `url("https://www.transparenttextures.com/patterns/concrete-wall.png")`}}>
           <div className={"col-span-2"}> 
             <div className={"hello"}>
 
             </div>
           </div>
-          <div className={"flex justify-center items-center"}>
+          <div className={"lie"}>
            {
              !data ? 
              <form onSubmit={handleClick}>
              <div>
-                  <div>Heksk</div>
                   <div>
-                      <label htmlFor="number" className="block text-2xl font-medium my-5 text-gray-700">
+                      <label htmlFor="number" className="block text-4xl font-medium my-5 text-gray-700">
                       License Number 
                       </label>
                       <div className="mt-1">
@@ -92,14 +94,14 @@ function HomeComponent() {
                               id="number"
                               onChange = {e => setLicenseNumber(e.target.value)}
                               placeholder="G00000000001"
-                              className={"h-10 px-3 ring-2 block w-full sm:text-sm border-gray-300 rounded-md"}
+                              className={"h-10 px-3 ring-2 w-full sm:text-sm border-gray-300 rounded-md"}
                           />
                       </div>
                    </div>
                    <div>
-                     <button type="submit" className="mt-8 bg-green-500 w-full h-10 shadow-lg " value="hello">
+                     <button type="submit" className="mt-8 bg-green-500 w-full h-10 shadow-lg" value="hello">
                        <div>
-                           Check Validity
+                           {isLoading ? "Checking Validity.......": "Check Validity"}
                        </div>
                      </button>
                    </div>
@@ -107,14 +109,17 @@ function HomeComponent() {
            </form>
            : 
            <div>
-            <div>{data.id}</div>
-            <div>{data.date_of_birth}</div>
-            <div>{data.issue_date}</div>
-            <div>{data.full_name}</div>
-            <div>{data.expiry_date}</div>
+            <div className={"px-5 h-16 flex justify-center items-center mb-16 text-4xl"} style={{width: "40vh"}}>
+              User Details
+            </div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Driver's Id:</span> {data.id}</div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Date of Birth:</span> {data.date_of_birth}</div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Issuance Date:</span> {data.issue_date}</div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Full Name:</span> {data.full_name}</div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Date of Expiry:</span> {data.expiry_date}</div>
             <div>
-              <button onClick={doneDeal}>
-                okay
+              <button className="mt-8 bg-green-500 w-full h-10 shadow-lg " onClick={doneDeal}>
+                okay....
               </button>
             </div>
           </div>
