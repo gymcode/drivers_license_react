@@ -4,7 +4,8 @@ import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import Web3 from 'web3'
 import {ActivatedContext} from '../App'
-import sorry from './ss.css'
+import './ss.css'
+import toast from "react-hot-toast"
 
 import image from '../asset/image.jpg'
 // importing components 
@@ -45,8 +46,14 @@ function HomeComponent() {
         id: LicenseNumber,        
       }
     ) 
-    .then( ({data}) => 
-      setData(data))
+    .then( ({data}) => {
+      setData(data)
+      toast.success("Identity Found")
+    })
+    .catch((e)=>{
+      setIsLoading(!isLoading)
+      toast.error("not found")
+    })
       
   } 
 
