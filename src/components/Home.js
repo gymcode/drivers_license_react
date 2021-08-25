@@ -23,7 +23,7 @@ function HomeComponent() {
   const [data, setData] = React.useState()
   const [isLoading, setIsLoading] = React.useState(false)
   
-  const {target, setTarget, setIssuer, setSignature, setHash} = React.useContext(ActivatedContext)
+  const {target, setTarget, setIssuer, setSignature, setHash, signature} = React.useContext(ActivatedContext)
 
   let History = useHistory()
 
@@ -62,12 +62,14 @@ function HomeComponent() {
     // adding the hashing function 
     var hashed = web3js.utils.soliditySha3(target, driverApp.claimType, hexCode)
     var signedData = await web3js.eth.accounts.sign(hashed, driverApp.claimSignerKey)
-    setSignature(signedData.signature)
+    const signedHard = "0xbaee27558e040b39b273e05b2c7d2ba7760c1f2b99927ac0872af95f50f25784090fa9c455195d8d5f1feadef3c5cd443d79dc93914cd1298143fced9395d25d1c"
+    setSignature(signedHard)
     setHash(signedData.messageHash)
     console.log(signedData.messageHash)
     console.log(signedData.signature)
 
-    History.push(`/activated?hashed=${hashed}signedData=${signedData.signature}`)
+
+    History.push(`/activated?hashed=${hashed}signedData=${signature}`)
   }
         
   return (
@@ -110,16 +112,16 @@ function HomeComponent() {
            : 
            <div>
             <div className={"px-5 h-16 flex justify-center items-center mb-16 text-4xl"} style={{width: "40vh"}}>
-              User Details
+              Appruve Verify
             </div>
-            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Driver's Id:</span> {data.id}</div>
-            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Date of Birth:</span> {data.date_of_birth}</div>
-            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Issuance Date:</span> {data.issue_date}</div>
-            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Full Name:</span> {data.full_name}</div>
-            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Date of Expiry:</span> {data.expiry_date}</div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Driver's Id: </span> <span className={"ml-4"}>{data.id}</span></div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Date of Birth: </span> <span className={"ml-4"}>{data.date_of_birth}</span></div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Issuance Date: </span> <span className={"ml-4"}>{data.issue_date}</span></div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Full Name: </span>  <span className={"ml-4"}>{data.full_name}</span></div>
+            <div className={"px-5 border border-green-300 h-16 flex  items-center mb-3"} style={{width: "40vh"}}><span className={"font-mono"}>Date of Expiry: </span>  <span className={"ml-4"}>{data.expiry_date}</span></div>
             <div>
               <button className="mt-8 bg-green-500 w-full h-10 shadow-lg " onClick={doneDeal}>
-                okay....
+                okay...
               </button>
             </div>
           </div>
