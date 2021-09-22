@@ -12,7 +12,7 @@ import image from '../asset/image.jpg'
 import axios from 'axios'
 
 // importing claimsignerkey 
-import {driverApp, accessToken} from '../utils/configure.json'
+import {driverApp, accessToken, liveAccessToken} from '../utils/configure.json'
 
 // declaring web3 variables 
 const web3js = new Web3()
@@ -33,7 +33,7 @@ function HomeComponent() {
 
     axios.interceptors.request.use(
       config => {
-        config.headers.authorization = `Bearer ${accessToken.Token}`
+        config.headers.authorization = `Bearer ${liveAccessToken.Token}`
         return config
       }, 
       error => {
